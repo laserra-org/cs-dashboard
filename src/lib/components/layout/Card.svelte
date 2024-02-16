@@ -1,0 +1,1 @@
+<div class="my-4 p-8 w-3/4 max-w-full bg-white rounded shadow-lg h-fit overflow-x-auto"><slot>Card Content</slot></div>
