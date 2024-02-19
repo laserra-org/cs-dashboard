@@ -1,11 +1,9 @@
 <script>
     import { Input, Label, Select, Button, Textarea } from '$lib/components/atoms';
-    import { createAgreement } from '$lib/api/agreements'; //
+    import { createService } from '$lib/api/services'; //
     import { modalData } from '$lib/stores';
-    import { isAuthenticated } from '$lib/auth';
     import { closeModal } from '$lib/modal.js';
 
-    let token = isAuthenticated();
     let parentData;
 
     modalData.subscribe((value) => {
@@ -26,7 +24,7 @@
                 type: parentData.type.value,
                 notes: formData.notes
             };
-            const responseData = await createAgreement({'token':token}, body); // Call the API function
+            const responseData = await createService({'token':token}, body); // Call the API function
             location.reload();
         } catch (error) {
             console.error('Error:', error);

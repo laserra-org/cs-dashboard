@@ -22,10 +22,10 @@
     </div>
     <div class="flex text-lg place-items-center gap-8 px-6">
 
-          <a class="font-light" href="/">Bookings</a>
-          <a class="font-light" href="/">Services</a>
-          <a class="font-light" href="/">Resources</a>
-          <a class="font-light" href="/">Schedules</a>
+          <a class="font-light" href="/bookings">Bookings</a>
+          <a class="font-light" href="/services">Services</a>
+          <a class="font-light" href="/resources">Resources</a>
+          <a class="font-light" href="/schedules">Schedules</a>
 
     </div>
   </div>
