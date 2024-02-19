@@ -11,20 +11,18 @@
     });
 
     let formData = {
-        label: '',
-        notes: ''
+        name: '',
+        type: ''
     };
 
     async function handleSubmit() {
         try {
             const body = {
-                domain: localStorage.getItem('activeDomain'),
-                label: formData.label,
-                is_active: true,
-                type: parentData.type.value,
-                notes: formData.notes
+                name: 'ciao',
+                type: 'fixed',
+                duration: 'PT3H'
             };
-            const responseData = await createService({'token':token}, body); // Call the API function
+            const responseData = await createService({}, body); // Call the API function
             location.reload();
         } catch (error) {
             console.error('Error:', error);

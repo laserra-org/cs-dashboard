@@ -1,8 +1,8 @@
 <script>
-        import { onMount } from 'svelte';
-    import { Page, Card, Modal } from '$lib/components/layout';
-    import { toggleModal } from '$lib/modal.js';
-    import { Table, TableHeader, TableFooter } from '$lib/components/molecules';
+    import { onMount } from "svelte";
+    import { Page, Card, Modal } from "$lib/components/layout";
+    import { toggleModal } from "$lib/modal.js";
+    import { Table, TableHeader, TableFooter } from "$lib/components/molecules";
     import {
         TableBody,
         TableBodyRow,
@@ -11,48 +11,87 @@
         TableHeadCell,
         Icon,
         Button,
-    } from '$lib/components/atoms';
-    import { getServiceList, updateService } from '$lib/api/services';
-    import { createServiceModal, updateServiceModal } from '$lib/components/modals';
+    } from "$lib/components/atoms";
+    import { getServiceList, updateService } from "$lib/api/services";
+    import {
+        createServiceModal,
+        updateServiceModal,
+    } from "$lib/components/modals";
+    import { modalData } from "$lib/stores";
 
     let isLoading = true;
-    let includeDeletedItems = false;
     let res;
     let showModal;
     let modalContent;
-    let agreementType = { value: 'LEASING', name: 'Leasing' };
-    let tablePage = 1;
 
-onMount(async () => {
-        const params = {
+    modalData.subscribe((value) => {
+        showModal = value.open;
+        modalContent = value.content;
+    });
 
-        };
-        const response = await getServiceList({ }, params);
+    onMount(async () => {
+        const params = {};
+        const response = await getServiceList({}, params);
         res = await response.json();
         isLoading = false;
     });
 
-async function updateTable() {
-        isLoading = true;
-        const params = {
-            domain: localStorage.getItem('activeDomain'),
-            includeDeleted: includeDeletedItems,
-            page: tablePage,
-            type: agreementType.value,
-        };
-        const response = await getServiceList({  }, params);
-        res = await response.json();
-        isLoading = false;
-    }
-
 </script>
 
 <Page>
-<Button
+    <svelte:fragment slot="header">Services</svelte:fragment>
+    <svelte:fragment slot="main"
+        ><Card>
+            <TableHeader>
+                <svelte:fragment slot="tableheader-start"></svelte:fragment>
+                <svelte:fragment slot="tableheader-end">
+                    <Button
                         on:click={() =>
-                            toggleModal(showModal, createServiceModal, {})}>Create Leasing</Button>
+                            toggleModal(showModal, createServiceModal, {
+                                type: "Service",
+                            })}>Create Service</Button
+                    >
                     {#if showModal}
                         <Modal {modalContent} />
-                    {/if}
-            
+                    {/if}</svelte:fragment
+                >
+            </TableHeader>
+            <Table {isLoading}>
+            <TableHead>
+                {#each ['Name', 'Type', 'Duration', ''] as colName}
+                    <TableHeadCell>
+                        {colName}</TableHeadCell>
+                {/each}
+            </TableHead>
+
+
+            <TableBody>
+                {#each res.data as row}
+                    <TableBodyRow>
+                        <TableBodyCell>
+                            {row['name']}
+                        </TableBodyCell>
+                        {#each ['type','duration'] as col}
+                            <TableBodyCell>
+                                {row[col]}
+                            </TableBodyCell>
+                        {/each}
+                        <TableBodyCell align="right">
+                                <Button
+                                    type="secondary"
+                                    icon
+                                    on:click={() =>
+                                        toggleModal(showModal, updateServiceModal, {
+                                            type: 'service',
+                                            id: row['id'],
+                                        })}>
+                                    <Icon name="edit" size="24" />
+                                </Button>
+                        </TableBodyCell>
+                    </TableBodyRow>
+                {/each}
+            </TableBody>
+            </Table>
+        </Card>
+    </svelte:fragment>
 </Page>

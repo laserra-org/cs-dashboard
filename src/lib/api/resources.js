@@ -11,6 +11,7 @@ export async function getServiceList(header, params='') {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${HAPIO_API_TOKEN}`, // Include the JWT token in the header
+        'Content-Type': 'application/json',
         //'Access-Control-Allow-Origin': '*',
       },
     });
@@ -21,9 +22,9 @@ export async function getServiceList(header, params='') {
 }
 
 
-export async function getService(header, params) {
+export async function getResource(header, params) {
   try {
-    const response = await fetch(HAPIO_API_URL + '/v1/services/' + params.id, {
+    const response = await fetch(HAPIO_API_URL + '/v1/resources/' + params.id, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${HAPIO_API_TOKEN}`, // Include the JWT token in the header
@@ -37,7 +38,7 @@ export async function getService(header, params) {
       return data;
     } else {
       // Handle error (e.g., throw an error or show an error message)
-      throw new Error('Failed to get service');
+      throw new Error('Failed to get resource');
     }
   } catch (error) {
     console.error('Error:', error);
@@ -45,10 +46,10 @@ export async function getService(header, params) {
   }
 }
 
-export async function createService(header, body) {
-  console.log("creating a service...")
+export async function createResource(header, body) {
+  console.log("creating a resource...")
   try {
-    const response = await fetch(HAPIO_API_URL + '/v1/services', {
+    const response = await fetch(HAPIO_API_URL + '/v1/resources', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${HAPIO_API_TOKEN}`, // Include the JWT token in the header
@@ -63,7 +64,7 @@ export async function createService(header, body) {
       return data;
     } else {
       // Handle error (e.g., throw an error or show an error message)
-      throw new Error('Failed to create service');
+      throw new Error('Failed to create resource');
     }
   } catch (error) {
     console.error('Error:', error);
@@ -71,10 +72,10 @@ export async function createService(header, body) {
   }
 }
 
-export async function updateService(header, params, body) {
-  console.log("updating a service...")
+export async function updateResource(header, params, body) {
+  console.log("updating a resource...")
   try {
-    const response = await fetch(HAPIO_API_URL + '/v1/services/' + params.id, {
+    const response = await fetch(HAPIO_API_URL + '/v1/resources/' + params.id, {
       method: 'PATCH',
       headers: {
         'Authorization': `Bearer ${HAPIO_API_TOKEN}`, // Include the JWT token in the header
@@ -89,7 +90,7 @@ export async function updateService(header, params, body) {
       return data;
     } else {
       // Handle error (e.g., throw an error or show an error message)
-      throw new Error('Failed to update service');
+      throw new Error('Failed to update resource');
     }
   } catch (error) {
     console.error('Error:', error);

@@ -18,19 +18,19 @@
     };
 
     onMount(async () => {
-            const response = await getAgreement({'token':token}, {'id': parentData.id});
-            formData.label = response.label;
-            formData.notes = response.notes;
+            const response = await getService({}, {'id': parentData.id});
+            formData.name = response.name;
+            formData.type = response.type;
             isLoading = false;
     });
 
     async function handleSubmit() {
         try {
             const body = {
-                label: formData.label,
-                notes: formData.notes,
+                name: formData.name,
+                type: formData.type,
             };
-            const responseData = await updateAgreement({'token':token}, {'id': parentData.id}, body);
+            const responseData = await updateService({}, {'id': parentData.id}, body);
             location.reload();
         } catch (error) {
             console.error('Error:', error);
@@ -43,7 +43,7 @@
 <Spinner></Spinner>
 {:else}
 <div>
-    <div class="font-bold text-3xl pb-2">Update {parentData.type.name}</div>
+    <div class="font-bold text-3xl pb-2">Update Service: {formData.name}</div>
     <form on:submit={handleSubmit}>
         <div class="grid gap-x-4 gap-y-2 sm:grid-cols-2">
             <div class="flex flex-col">
@@ -54,16 +54,16 @@
                         id="label"
                         placeholder="Enter party name"
                         required
-                        bind:value={formData.label} />
+                        bind:value={formData.name} />
             </div>
             <div class="sm:col-span-2 flex flex-col">
                 <Label
-                    >Notes</Label>
+                    >Type</Label>
                     <Textarea
                         id="notes"
                         placeholder="Your notes here"
                         name="notes"
-                        bind:value={formData.notes} />
+                        bind:value={formData.type} />
             </div>
             <div class="sm:col-span-2 flex w-full justify-between py-4">
                 <Button
@@ -72,7 +72,7 @@
                         event.preventDefault();
                         closeModal();
                     }}>Close</Button>
-                <Button type="primary">Update {parentData.type.name}</Button>
+                <Button type="primary">Update Service</Button>
             </div>
         </div>
     </form>
