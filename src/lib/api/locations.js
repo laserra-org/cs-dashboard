@@ -1,13 +1,13 @@
 import { HAPIO_API_URL } from '$lib/config.js';
 import { HAPIO_API_TOKEN } from '$lib/config.js';
 
-export async function getServiceList(header, params='') {
+export async function getLocationList(header, params='') {
 
   try {
     const queryString = Object.keys(params).length > 0
     ? `?${new URLSearchParams(params).toString()}`
     : '';
-    const response = await fetch(HAPIO_API_URL + '/v1/services/', {
+    const response = await fetch(HAPIO_API_URL + '/v1/locations/', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${HAPIO_API_TOKEN}`, // Include the JWT token in the header
@@ -16,14 +16,14 @@ export async function getServiceList(header, params='') {
     });
     return response;
   } catch (error) {
-    throw new Error(`Error fetching services list: ${error.message}`);
+    throw new Error(`Error fetching locations list: ${error.message}`);
   }
 }
 
 
-export async function getService(header, params) {
+export async function getLocation(header, params) {
   try {
-    const response = await fetch(HAPIO_API_URL + '/v1/services/' + params.id, {
+    const response = await fetch(HAPIO_API_URL + '/v1/locations/' + params.id, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${HAPIO_API_TOKEN}`, // Include the JWT token in the header
@@ -37,7 +37,7 @@ export async function getService(header, params) {
       return data;
     } else {
       // Handle error (e.g., throw an error or show an error message)
-      throw new Error('Failed to get service');
+      throw new Error('Failed to get location');
     }
   } catch (error) {
     console.error('Error:', error);
@@ -45,10 +45,10 @@ export async function getService(header, params) {
   }
 }
 
-export async function createService(header, body) {
-  console.log("creating a service...")
+export async function createLocation(header, body) {
+  console.log("creating a location...")
   try {
-    const response = await fetch(HAPIO_API_URL + '/v1/services', {
+    const response = await fetch(HAPIO_API_URL + '/v1/locations', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${HAPIO_API_TOKEN}`, // Include the JWT token in the header
@@ -63,7 +63,7 @@ export async function createService(header, body) {
       return data;
     } else {
       // Handle error (e.g., throw an error or show an error message)
-      throw new Error('Failed to create service');
+      throw new Error('Failed to create location');
     }
   } catch (error) {
     console.error('Error:', error);
@@ -71,10 +71,10 @@ export async function createService(header, body) {
   }
 }
 
-export async function updateService(header, params, body) {
-  console.log("updating a service...")
+export async function updateLocation(header, params, body) {
+  console.log("updating a location...")
   try {
-    const response = await fetch(HAPIO_API_URL + '/v1/services/' + params.id, {
+    const response = await fetch(HAPIO_API_URL + '/v1/locations/' + params.id, {
       method: 'PATCH',
       headers: {
         'Authorization': `Bearer ${HAPIO_API_TOKEN}`, // Include the JWT token in the header
@@ -89,7 +89,7 @@ export async function updateService(header, params, body) {
       return data;
     } else {
       // Handle error (e.g., throw an error or show an error message)
-      throw new Error('Failed to update service');
+      throw new Error('Failed to update location');
     }
   } catch (error) {
     console.error('Error:', error);

@@ -25,7 +25,7 @@
           <a class="font-light" href="/bookings">Bookings</a>
           <a class="font-light" href="/services">Services</a>
           <a class="font-light" href="/resources">Resources</a>
-          <a class="font-light" href="/schedules">Schedules</a>
+          <a class="font-light" href="/locations">Locations</a>
 
     </div>
   </div>
