@@ -30,7 +30,9 @@
     });
 
     onMount(async () => {
-        const params = {};
+        const params = {
+            disabled: 'include',
+        };
         const response = await getServiceList({}, params);
         res = await response.json();
         isLoading = false;
@@ -58,7 +60,7 @@
             </TableHeader>
             <Table {isLoading}>
             <TableHead>
-                {#each ['Name', 'Type', 'Duration', ''] as colName}
+                {#each ['Name', 'Type', 'Duration', 'Price', 'Cancelation Threshold', 'Window Starts', 'Window Ends', ''] as colName}
                     <TableHeadCell>
                         {colName}</TableHeadCell>
                 {/each}
@@ -71,7 +73,7 @@
                         <TableBodyCell>
                             {row['name']}
                         </TableBodyCell>
-                        {#each ['type','duration'] as col}
+                        {#each ['type','duration', 'price', 'cancelation_threshold', 'booking_window_start', 'booking_window_end'] as col}
                             <TableBodyCell>
                                 {row[col]}
                             </TableBodyCell>

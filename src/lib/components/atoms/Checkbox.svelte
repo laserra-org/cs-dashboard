@@ -1,5 +1,5 @@
 <script>
-    export let value = '';
+    export let checked = false;
 </script>
 
-<input  {...$$props} {...$$props} bind:value on:input on:change type="checkbox" />
+<input  {...$$props} bind:checked on:change type="checkbox" />

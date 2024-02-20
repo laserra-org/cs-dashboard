@@ -30,7 +30,9 @@
     });
 
     onMount(async () => {
-        const params = {};
+        const params = {
+            disabled: 'include',
+        };
         const response = await getLocationList({}, params);
         res = await response.json();
         isLoading = false;
@@ -58,7 +60,7 @@
             </TableHeader>
             <Table {isLoading}>
             <TableHead>
-                {#each ['Name', 'Timezone', 'Resource selection strategy', ''] as colName}
+                {#each ['Name', 'Timezone', 'Res. sel. strategy', 'Res. sel. priority','Enabled',''] as colName}
                     <TableHeadCell>
                         {colName}</TableHeadCell>
                 {/each}
@@ -71,7 +73,7 @@
                         <TableBodyCell>
                             {row['name']}
                         </TableBodyCell>
-                        {#each ['time_zone','resource_selection_strategy'] as col}
+                        {#each ['time_zone','resource_selection_strategy','resource_selection_priority','enabled'] as col}
                             <TableBodyCell>
                                 {row[col]}
                             </TableBodyCell>
