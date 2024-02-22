@@ -19,3 +19,25 @@ export async function getBookingList(header, params='') {
     throw new Error(`Error fetching locations list: ${error.message}`);
   }
 }
+
+export async function deleteBooking(header, params) {
+    console.log("deleting a booking...")
+    try {
+      const response = await fetch(HAPIO_API_URL + '/v1/bookings/' + params.id , {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${HAPIO_API_TOKEN}` // Include the JWT token in the header
+        },
+      });
+  
+      if (response.ok) {
+        // Handle success (e.g., return response data or show a success message)
+      } else {
+        // Handle error (e.g., throw an error or show an error message)
+        throw new Error('Failed to delete a booking');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  }

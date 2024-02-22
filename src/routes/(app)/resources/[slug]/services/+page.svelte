@@ -91,7 +91,7 @@
                                     },
                                 )}
                         >
-                            <Icon name="edit" size="24" />
+                            <Icon name="delete" size="24" />
                         </Button>
                     </TableBodyCell>
                 </TableBodyRow>

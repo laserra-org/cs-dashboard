@@ -10,3 +10,4 @@ export { default as createRecurringScheduleModal } from './createRecurringSchedu
 export { default as updateRecurringScheduleModal } from './updateRecurringScheduleModal.svelte'
 export { default as createResourceServiceModal } from './createResourceServiceModal.svelte'
 export { default as deleteResourceServiceModal } from './deleteResourceServiceModal.svelte'
+export { default as deleteBookingModal } from './deleteBookingModal.svelte'
