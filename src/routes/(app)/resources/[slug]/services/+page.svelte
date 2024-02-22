@@ -27,6 +27,7 @@
     let showModal;
     let modalContent;
 
+
     modalData.subscribe((value) => {
         showModal = value.open;
         modalContent = value.content;
