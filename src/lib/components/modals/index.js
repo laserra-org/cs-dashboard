@@ -8,3 +8,5 @@ export { default as createScheduleBlockModal } from './createScheduleBlockModal.
 export { default as updateScheduleBlockModal } from './updateScheduleBlockModal.svelte'
 export { default as createRecurringScheduleModal } from './createRecurringScheduleModal.svelte'
 export { default as updateRecurringScheduleModal } from './updateRecurringScheduleModal.svelte'
+export { default as createResourceServiceModal } from './createResourceServiceModal.svelte'
+export { default as deleteResourceServiceModal } from './deleteResourceServiceModal.svelte'

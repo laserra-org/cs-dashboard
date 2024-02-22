@@ -42,6 +42,8 @@
         res = await response.json();
         isLoading = false;
     });
+
+    console.log(data.obj)
 </script>
 
 <Card>
@@ -51,7 +53,7 @@
             <Button
                 on:click={() =>
                     toggleModal(showModal, createScheduleBlockModal, {
-                        type: "schedule_block",
+                        type: "schedule_block", obj: data.obj
                     })}>Create Schedule Block</Button
             >
             {#if showModal}
@@ -72,9 +74,9 @@
             {#each res.data as row}
                 <TableBodyRow>
                     <TableBodyCell>
-                        {row["id"]}
+                        {row.location.name}
                     </TableBodyCell>
-                    {#each ["location_id", "starts_at", "ends_at", "is_available"] as col}
+                    {#each ["starts_at", "ends_at", "is_available"] as col}
                         <TableBodyCell>
                             {row[col]}
                         </TableBodyCell>
@@ -89,6 +91,7 @@
                                     updateScheduleBlockModal,
                                     {
                                         type: "schedule_block",
+                                        resource_id: data.obj.id,
                                         id: row["id"],
                                     },
                                 )}

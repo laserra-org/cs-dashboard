@@ -45,10 +45,10 @@ export async function getScheduleBlock(header, params) {
   }
 }
 
-export async function createScheduleBlock(header, body) {
+export async function createScheduleBlock(header, params, body) {
   console.log("creating a schedule block...")
   try {
-    const response = await fetch(HAPIO_API_URL + '/v1/services', {
+    const response = await fetch(HAPIO_API_URL + '/v1/resources/' + params.resource + '/schedule-blocks/', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${HAPIO_API_TOKEN}`, // Include the JWT token in the header
@@ -74,7 +74,7 @@ export async function createScheduleBlock(header, body) {
 export async function updateScheduleBlock(header, params, body) {
   console.log("updating a schedule block...")
   try {
-    const response = await fetch(HAPIO_API_URL + '/v1/services/' + params.id, {
+    const response = await fetch(HAPIO_API_URL + '/v1/resources/' + params.resource + '/schedule-blocks/' + params.id , {
       method: 'PATCH',
       headers: {
         'Authorization': `Bearer ${HAPIO_API_TOKEN}`, // Include the JWT token in the header
